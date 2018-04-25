@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Trust Beauty</title>
+
+    <!-- Bootstrap core CSS -->
+    {% load static %}
+    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {% load static %}
+    <link href="{% static "css/shop-item.css" %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Trust Beauty</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Trust Beauty</h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Skin Care</a>
+            <a href="#" class="list-group-item">Powders</a>
+            <a href="#" class="list-group-item">Scrubs</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+          <div class="card mt-4">
+            <img class="card-img-top img-fluid" src="{% static 'images' %}/{{ product.image_name }}" alt="">
+            <div class="card-body">
+              <h3 class="card-title">{{ product.name }}</h3>
+              <h4>$24.99</h4>
+              <p class="card-text">{{ product.description }}</p>
+              
+              {% if avgreview == 1 %}
+                <span class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</span>
+              
+              {% elif avgreview == 2 %}
+                <span class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</span>
+
+              {% elif avgreview == 3 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
+
+              {% elif avgreview == 4 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+
+              {% elif avgreview == 5 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+              {% endif %}
+
+              {{ avgreview }} stars
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Product Reviews
+            </div>
+            <div class="card-body">
+              
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Leave a review
+              </button>              
+              <hr>
+              {% for review in reviews %}
+
+              {% if review.stars == 1 %}
+                <span class="text-warning">&#9733; &#9734; &#9734; &#9734; &#9734;</span>
+              
+              {% elif review.stars == 2 %}
+                <span class="text-warning">&#9733; &#9733; &#9734; &#9734; &#9734;</span>
+
+              {% elif review.stars == 3 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
+
+              {% elif review.stars == 4 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+
+              {% elif review.stars == 5 %}
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+              {% endif %}
+
+              
+
+              <p>{{ review.body }}</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr>
+              {% endfor %}
+              <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+              <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+              <hr> -->
+              
+            </div>
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="/product/{{ product.id }}/">
+      <div class="modal-body">
+        
+        
+          {% csrf_token %}
+          {{ form.as_p }}
+          
+
+        
+
+      </div>
+        
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit review</button>
+      </div>
+</form>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+<!-- ./Modal -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    {% load static %}
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+    
+    {% load static %}
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+  </body>
+
+</html>
